@@ -37,12 +37,11 @@ void window::clear_render(SDL_Renderer *ren)
 	SDL_RenderClear(ren);
 }
 
-bool window::init_window()
+void window::init_window()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
 		SDL_Log("SDL could not be initialized: %s", SDL_GetError());
-		return false;
 	}
 	else
 	{
@@ -51,6 +50,8 @@ bool window::init_window()
 		// Make the context for the window the same that is created in set_context()
 		this->m_context = SDL_GL_CreateContext(this->m_window);
 
-		return true;
+		// Set up the GLEW library
+		glewExperimental = GL_TRUE;
+		glewInit();
 	}
 }
