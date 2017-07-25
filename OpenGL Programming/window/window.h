@@ -3,14 +3,14 @@
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 
-// Class for window managment
+// Window management class
 class window
 {
 public:
 	SDL_Window		*m_window = nullptr;
 	SDL_Renderer	*m_renderer = nullptr;
 	SDL_Event		m_event;
-	SDL_GLContext	m_context;
+	SDL_GLContext	m_context = nullptr;
 
 public:
 	window();
