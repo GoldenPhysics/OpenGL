@@ -2,7 +2,15 @@
 
 window::window()
 {
+	this->set_context(3, 2); // OpenGL 3.2
 	this->init_window();
+	this->set_title("OpenGL");
+}
+
+window::~window()
+{
+	SDL_GL_DeleteContext(m_context);
+	SDL_Quit();
 }
 
 void window::set_context(unsigned int major, unsigned int minor)
@@ -38,7 +46,11 @@ bool window::init_window()
 	}
 	else
 	{
-		SDL_CreateWindowAndRenderer(1280, 720, SDL_WINDOW_SHOWN, &this->m_window, &this->m_renderer);
+		SDL_CreateWindowAndRenderer(1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL, &this->m_window, &this->m_renderer);
+		
+		// Make the context for the window the same that is created in set_context()
+		this->m_context = SDL_GL_CreateContext(this->m_window);
+
 		return true;
 	}
 }
