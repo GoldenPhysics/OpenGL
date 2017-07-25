@@ -1,10 +1,19 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
+#include "window/window.h"
+#include "input/input.h"
 
 int main(int argc, char *argv[])
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Delay(2000);
-	SDL_Quit();
+	window win;
+
+	// Clear renderer
+	SDL_SetRenderDrawColor(win.m_renderer, 240, 240, 240, 255);
+	SDL_RenderClear(win.m_renderer);
+
+	while (1)
+	{
+		input::handle_input(win);
+		SDL_GL_SwapWindow(win.m_window); // This handles swapping buffers
+	}
+
 	return 0;
 }

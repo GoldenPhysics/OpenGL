@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="input\input.h" />
     <ClInclude Include="window\window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
