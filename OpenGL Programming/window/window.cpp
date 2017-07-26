@@ -1,12 +1,11 @@
 #include "window.h"
-
 #include <iostream>
 
 window::window()
 {
-	this->set_context(3, 3); // OpenGL 3.3
-	this->init_window();
-	this->set_title("OpenGL");
+	set_context(3, 3); // OpenGL 3.3
+	init_window();
+	set_title("OpenGL");
 }
 
 window::~window()
@@ -24,12 +23,12 @@ void window::set_context(unsigned int major, unsigned int minor)
 
 void window::set_resolution(int w, int h)
 {
-	SDL_SetWindowSize(this->m_window, w, h);
+	SDL_SetWindowSize(m_window, w, h);
 }
 
 void window::set_title(const char *title)
 {
-	SDL_SetWindowTitle(this->m_window, title);
+	SDL_SetWindowTitle(m_window, title);
 }
 
 void window::clear_render(SDL_Renderer *ren)
@@ -46,11 +45,11 @@ void window::init_window()
 	}
 	else
 	{
-		SDL_CreateWindowAndRenderer(1280, 720, SDL_WINDOW_OPENGL, &this->m_window, &this->m_renderer);
+		SDL_CreateWindowAndRenderer(1280, 720, SDL_WINDOW_OPENGL, &m_window, &m_renderer);
 		
 		// Make the context for the window the same that is created in set_context()
-		this->m_context = SDL_GL_CreateContext(this->m_window);
-		if (this->m_context == nullptr)
+		m_context = SDL_GL_CreateContext(m_window);
+		if (m_context == nullptr)
 			std::cerr << "OpenGL context could not be opened" << std::endl;
 
 		// Set up the GLEW library
